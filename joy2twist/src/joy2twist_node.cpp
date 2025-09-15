@@ -14,7 +14,7 @@ Joy2TwistNode::Joy2TwistNode() : Node("joy2twist_node")
   joy_sub_ = create_subscription<MsgJoy>(
     "joy", rclcpp::SensorDataQoS(), std::bind(&Joy2TwistNode::joy_cb, this, _1));
   twist_pub_ = create_publisher<MsgTwist>(
-    "/hoverboard_base_controller/cmd_vel_unstamped", rclcpp::QoS(rclcpp::KeepLast(1)).durability_volatile().reliable());
+    "/cmd_vel_nav", rclcpp::QoS(rclcpp::KeepLast(1)).durability_volatile().reliable());
 
   if (e_stop_present_) {
     e_stop_sub_ = this->create_subscription<MsgBool>(
