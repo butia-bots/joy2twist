@@ -20,7 +20,7 @@ class JoystickSpeechNode(Node):
 
     def initRosComm(self):
         self.joy_sub_ = self.create_subscription(Joy, 'joy', self.joy_cb, qos_profile_sensor_data)
-        self.cli = self.create_client(SynthesizeSpeech, "speech_msg")
+        self.cli = self.create_client(SynthesizeSpeech, "/fbot_speech/ss/say_something")
 
 
     def joy_cb(self, joy_msg):
@@ -51,10 +51,14 @@ class JoystickSpeechNode(Node):
         self.last_button_state_5 = self.current_button_state_5
 
     def create_message(self, text, lang):
+        self.get_logger().info('Creating message: "%s" in %s' % (text, lang))
         request = SynthesizeSpeech.Request()
         request.text = text
         request.lang = lang
-        self.future = self.cli.call_async(request)
+        response = self.cli.call_async(request)
+        #while response.done() is False:
+        #   pass
+        self.get_logger().info('Message created successfully!')
 
 
 def main(args=None):
