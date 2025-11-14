@@ -24,7 +24,7 @@ class JoystickSpeechNode(Node):
 
     def initRosComm(self):
         self.joy_sub_ = self.create_subscription(Joy, 'joy', self.joy_cb, qos_profile_sensor_data)
-        self.cli = self.create_client(SynthesizeSpeech, "speech_msg")
+        self.cli = self.create_client(SynthesizeSpeech, "/fbot_speech/ss/say_something")
 
 
     def joy_cb(self, joy_msg):
