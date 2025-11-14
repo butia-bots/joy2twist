@@ -7,15 +7,19 @@ from sensor_msgs.msg import Joy
 from rclpy.qos import qos_profile_sensor_data
 from fbot_speech_msgs.srv import SynthesizeSpeech
 
+BUTTON_Y = 3
+DPAD_VERTICAL = 5
+DPAD_HORIZONTAL = 4
+
 class JoystickSpeechNode(Node):
     def __init__(self):
         super().__init__('Joystick_Speech_node')
         self.initRosComm()
 
-        self.last_button_state_5 = 0
-        self.last_button_state_4 = 0
-        self.current_button_state_5 = 0
-        self.current_button_state_4 = 0
+        self.last_DPAD_vertical_state = 0
+        self.last_DPAD_horizontal_state = 0
+        self.current_DPAD_vertical_state = 0
+        self.current_DPAD_horizontal_state = 0
 
 
     def initRosComm(self):
@@ -25,36 +29,42 @@ class JoystickSpeechNode(Node):
 
     def joy_cb(self, joy_msg):
 
-        self.current_button_state_5 = joy_msg.axes[5]
-        self.current_button_state_4 = joy_msg.axes[4]
+        self.current_DPAD_vertical_state = joy_msg.axes[DPAD_VERTICAL]
+        self.current_DPAD_horizontal_state = joy_msg.axes[DPAD_HORIZONTAL]
+        self.current_BUTTON_Y_state = joy_msg.buttons[3]
 
-        if joy_msg.buttons[3] == 1:
+        if self.current_BUTTON_Y_state == 1:
 
-            if self.current_button_state_5 == 1 and self.last_button_state_5 == 0:
+            if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
                 self.get_logger().info("Botão pressionado")
                 self.create_message('Hello my name is Boris', 'en')
 
-            elif self.current_button_state_5 == -1 and self.last_button_state_5 == 0:
+            elif self.current_DPAD_vertical_state == -1 and self.last_DPAD_vertical_state == 0:
                 self.get_logger().info("Botão pressionado")
                 self.create_message('The FBOT is the Robotics Group at FURG (Federal University of Rio Grande) focused on developing projects in autonomous mobile robotics. ' \
                                 'Their main objective is to prepare students for national and international competitions, applying knowledge in electronics, programming, and artificial intelligence.', 'en')
             
-            elif self.current_button_state_4 == 1 and self.last_button_state_4 == 0:
+            elif self.current_DPAD_horizontal_state == 1 and self.last_DPAD_horizontal_state == 0:
                 self.get_logger().info("Botão pressionado")
                 self.create_message('I come from FURG, the Federal University of Rio Grande, a public higher education institution recognized for its excellence in teaching, research, and outreach (extension).', 'en')
 
-            elif self.current_button_state_4 == -1 and self.last_button_state_4 == 0:
+            elif self.current_DPAD_horizontal_state == -1 and self.last_DPAD_horizontal_state == 0:
                 self.get_logger().info("Botão pressionado")
                 self.create_message('Currently, I am a four-time brazilian robotics competition champion. ', 'en')
 
-        self.last_button_state_4 = self.current_button_state_4
-        self.last_button_state_5 = self.current_button_state_5
+        self.last_DPAD_horizontal_state = self.current_DPAD_horizontal_state
+        self.last_DPAD_vertical_state = self.current_DPAD_vertical_state
+
 
     def create_message(self, text, lang):
+        self.get_logger().info('Creating message: "%s" in %s' % (text, lang))
         request = SynthesizeSpeech.Request()
         request.text = text
         request.lang = lang
-        self.future = self.cli.call_async(request)
+        response = self.cli.call_async(request)
+        #while response.done() is False:
+        #   pass
+        self.get_logger().info('Message created successfully!')
 
 
 def main(args=None):
