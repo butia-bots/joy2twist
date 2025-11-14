@@ -20,6 +20,8 @@ find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(joy_linux REQUIRED)
+find_package(ament_cmake_python REQUIRED)
+find_package(rclpy REQUIRED)
 include_directories(include)
 
 add_executable(
@@ -47,6 +49,14 @@ install(DIRECTORY
   launch
   config
   DESTINATION share/${PROJECT_NAME}/
+)
+
+ament_python_install_package(${PROJECT_NAME})
+
+install(PROGRAMS
+  scripts/joy_speech.py
+  scripts/joy_speech_teste.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 if (BUILD_TESTING)
