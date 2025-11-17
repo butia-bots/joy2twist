@@ -27,9 +27,10 @@ class JoystickSpeechNode(Node):
         self.joy_sub_ = self.create_subscription(Joy, 'joy', self.joy_cb, qos_profile_sensor_data)
         self.cli = self.create_client(SynthesizeSpeech, "/fbot_speech/ss/say_something")
         self.neck_pub_ = self.create_publisher(Float64MultiArray, "/updateNeck", 1)
-        self.joint_sub_ = self.create_subscription(JointState, "/boris_head/joint_states", self.joint_cb)
+        self.joint_sub_ = self.create_subscription(JointState, "/boris_head/joint_states", self.joint_cb, qos_profile_sensor_data)
 
     def joint_cb(self, msg: JointState):
+        self.get_logger().info("Recebendo joint states")
         self.joint = msg
         self.joint.position = msg.position
         self.get_logger().info(str(self.joint.position))
