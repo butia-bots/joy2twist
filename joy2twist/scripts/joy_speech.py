@@ -9,7 +9,7 @@ from std_msgs.msg import Bool, Float64MultiArray
 import numpy as np
 
 BUTTON_Y = 3
-BUTTON_X = 2
+BUTTON_X = 0
 DPAD_VERTICAL = 5
 DPAD_HORIZONTAL = 4
 
@@ -17,15 +17,18 @@ class JoystickSpeechNode(Node):
     def __init__(self):
         super().__init__('Joystick_Speech_node')
         self.initRosComm()
-        self.start_pos()
 
         self.last_DPAD_vertical_state = 0
         self.last_DPAD_horizontal_state = 0
         self.current_DPAD_vertical_state = 0
         self.current_DPAD_horizontal_state = 0
 
-        self.current_horizontal = 170
-        self.current_vertical = 160
+        self.horizontal_limit = 120.0, 240.0
+        self.vertical_limit = 150.0, 190.0
+
+        self.current_horizontal = 180.0
+        self.current_vertical = 180.0
+        self.start_pos()
 
 
     def initRosComm(self):
@@ -34,9 +37,11 @@ class JoystickSpeechNode(Node):
         self.neck_pub_ = self.create_publisher(Float64MultiArray, "/updateNeck", 1)
 
     def start_pos(self):
-        neck = Float64MultiArray.Request()
-        neck.data = [self.current_horizontal, self.current_vertical]
-        self.neck_pub_.publish(neck.data)
+        horizontal = self.current_horizontal
+        vertical = self.current_vertical
+        neck = Float64MultiArray()
+        neck.data = [horizontal, vertical]
+        self.neck_pub_.publish(neck)
 
         
     def joy_cb(self, joy_msg):
@@ -48,6 +53,7 @@ class JoystickSpeechNode(Node):
         self.current_BUTTON_X_state = joy_msg.buttons[BUTTON_X]
 
         if self.current_BUTTON_Y_state == 1:
+            self.get_logger().info("Botão Y pressionado")
             
             if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
                 self.get_logger().info("Botão para cima pressionado")
@@ -68,34 +74,35 @@ class JoystickSpeechNode(Node):
 
 
         elif self.current_BUTTON_X_state == 1:
+            self.get_logger().info("Botão X pressionado")
            
-            if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
+            if self.current_DPAD_vertical_state == 1 and self.current_vertical < self.vertical_limit:
                 self.get_logger().info("Botão para cima pressionado")
-                self.neck_movement(self, 0.0, 1.0)
+                self.neck_movement(0.0, 1.0)
                 
-            elif self.current_DPAD_vertical_state == -1 and self.last_DPAD_vertical_state == 0:
+            elif self.current_DPAD_vertical_state == -1 and self.current_vertical > self.vertical_limit:
                 self.get_logger().info("Botão para baixo pressionado")
-                self.neck_movement(self, 0.0, -1.0)
+                self.neck_movement(0.0, -1.0)
 
-            elif self.current_DPAD_horizontal_state == 1 and self.last_DPAD_horizontal_state == 0:
+            elif self.current_DPAD_horizontal_state == 1 and self.current_horizontal > self.horizontal_limit:
                 self.get_logger().info("Botão para direita pressionado")
-                self.neck_movement(self, 1.0, 0.0)
+                self.neck_movement(1.0, 0.0)
 
-            elif self.current_DPAD_horizontal_state == -1 and self.last_DPAD_horizontal_state == 0:
+            elif self.current_DPAD_horizontal_state == -1 and self.current_horizontal < self.horizontal_limit:
                 self.get_logger().info("Botão para esquerda pressionado")
-                self.neck_movement(self, -1.0, 0.0)
+                self.neck_movement(-1.0, 0.0)
 
         self.last_DPAD_horizontal_state = self.current_DPAD_horizontal_state
         self.last_DPAD_vertical_state = self.current_DPAD_vertical_state
 
 
-    def neck_movement(self, horizontal_angle = 0, vertical_angle = 0):
+    def neck_movement(self, horizontal_angle, vertical_angle):
         self.get_logger().info("Neck_movement ativado")
         self.current_horizontal += horizontal_angle
         self.current_vertical += vertical_angle
-        neck = Float64MultiArray.Request()
+        neck = Float64MultiArray()
         neck.data = [self.current_horizontal, self.current_vertical]
-        self.neck_pub_.publish(neck.data)
+        self.neck_pub_.publish(neck)
         
 
     def create_message(self, text, lang):
