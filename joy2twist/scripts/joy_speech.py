@@ -10,6 +10,7 @@ import numpy as np
 
 BUTTON_Y = 3
 BUTTON_X = 0
+BUTTON_A = 1
 DPAD_VERTICAL = 5
 DPAD_HORIZONTAL = 4
 
@@ -23,11 +24,18 @@ class JoystickSpeechNode(Node):
         self.current_DPAD_vertical_state = 0
         self.current_DPAD_horizontal_state = 0
 
-        self.horizontal_limit = 120.0, 240.0
-        self.vertical_limit = 150.0, 190.0
+        self.up_limit = 190.0
+        self.down_limit = 150.0
+        self.right_limit = 240.0
+        self.left_limit = 120.0
 
-        self.current_horizontal = 180.0
-        self.current_vertical = 180.0
+        self.velocity = 1.0
+
+        self.initial_horizontal = 180.0
+        self.initial_vertical = 180.0
+
+        self.current_horizontal = self.initial_horizontal
+        self.current_vertical = self.initial_vertical
         self.start_pos()
 
 
@@ -46,11 +54,11 @@ class JoystickSpeechNode(Node):
         
     def joy_cb(self, joy_msg):
         
-
         self.current_DPAD_vertical_state = joy_msg.axes[DPAD_VERTICAL]
         self.current_DPAD_horizontal_state = joy_msg.axes[DPAD_HORIZONTAL]
         self.current_BUTTON_Y_state = joy_msg.buttons[BUTTON_Y]
         self.current_BUTTON_X_state = joy_msg.buttons[BUTTON_X]
+        self.current_BUTTON_A_state = joy_msg.buttons[BUTTON_A]
 
         if self.current_BUTTON_Y_state == 1:
             self.get_logger().info("Botão Y pressionado")
@@ -76,24 +84,27 @@ class JoystickSpeechNode(Node):
         elif self.current_BUTTON_X_state == 1:
             self.get_logger().info("Botão X pressionado")
            
-            if self.current_DPAD_vertical_state == 1 and self.current_vertical < self.vertical_limit:
+            if self.current_DPAD_vertical_state == 1 and self.current_vertical < self.up_limit:
                 self.get_logger().info("Botão para cima pressionado")
-                self.neck_movement(0.0, 1.0)
+                self.neck_movement(0.0, self.velocity)
                 
-            elif self.current_DPAD_vertical_state == -1 and self.current_vertical > self.vertical_limit:
+            elif self.current_DPAD_vertical_state == -1 and self.current_vertical > self.down_limit:
                 self.get_logger().info("Botão para baixo pressionado")
-                self.neck_movement(0.0, -1.0)
+                self.neck_movement(0.0, -self.velocity)
 
-            elif self.current_DPAD_horizontal_state == 1 and self.current_horizontal > self.horizontal_limit:
+            elif self.current_DPAD_horizontal_state == 1 and self.current_horizontal > self.right_limit:
                 self.get_logger().info("Botão para direita pressionado")
-                self.neck_movement(1.0, 0.0)
+                self.neck_movement(self.velocity, 0.0)
 
-            elif self.current_DPAD_horizontal_state == -1 and self.current_horizontal < self.horizontal_limit:
+            elif self.current_DPAD_horizontal_state == -1 and self.current_horizontal < self.left_limit:
                 self.get_logger().info("Botão para esquerda pressionado")
-                self.neck_movement(-1.0, 0.0)
+                self.neck_movement(-self.velocity, 0.0)
+            
+            elif self.current_BUTTON_A_state == 1:
+                self.start_pos()
 
         self.last_DPAD_horizontal_state = self.current_DPAD_horizontal_state
-        self.last_DPAD_vertical_state = self.current_DPAD_vertical_state
+        self.last_DPAD_vertical_state = self.current_horizontal_state = self.current_DPAD_vertical_state
 
 
     def neck_movement(self, horizontal_angle, vertical_angle):
