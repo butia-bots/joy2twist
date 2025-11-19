@@ -1,0 +1,12 @@
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/uninstall.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/joy2twist_uninstall.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/joy2twist.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/ament_cmake_python_copy_joy2twist.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/ament_cmake_python_build_joy2twist_egg.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/test.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/edit_cache.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/rebuild_cache.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/list_install_components.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/install.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/install/local.dir
+/home/fbot/fbot_ws/src/joy2twist/build/joy2twist/CMakeFiles/install/strip.dir

@@ -52,6 +52,7 @@ class JoystickSpeechNode(Node):
         self.current_DPAD_horizontal_state = joy_msg.axes[self.DPAD_HORIZONTAL]
 
         if self.current_BUTTON_Y_state == 1:
+            self.get_logger().info("Botão Y pressionado")
             
             if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
                 self.get_logger().info("Botão para cima pressionado")
@@ -72,6 +73,7 @@ class JoystickSpeechNode(Node):
 
 
         elif self.current_BUTTON_X_state == 1:
+            self.get_logger().info("Botão X pressionado")
            
             if self.current_DPAD_vertical_state == 1 and self.current_vertical < self.up_limit:
                 self.get_logger().info("Botão para cima pressionado")
@@ -110,9 +112,6 @@ class JoystickSpeechNode(Node):
         request = SynthesizeSpeech.Request()
         request.text = text
         request.lang = lang
-        if not self.cli.wait_for_service(5):
-            self.get_logger().error("Service not available")
-            return
         response = self.cli.call_async(request)
         #while response.done() is False:
         #   pass

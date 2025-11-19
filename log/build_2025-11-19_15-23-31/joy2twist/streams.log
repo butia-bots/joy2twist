@@ -1,0 +1,101 @@
+[0.010s] Invoking command in '/home/fbot/fbot_ws/src/joy2twist/build/joy2twist': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/fbot/fbot_ws/install/fbot_hri_bringup:/home/fbot/fbot_ws/install/interbotix_xs_modules:/home/fbot/fbot_ws/install/interbotix_perception_modules:/home/fbot/fbot_ws/install/interbotix_common_modules:/home/fbot/fbot_ws/install/fbot_world:/home/fbot/fbot_ws/install/fbot_vlm:/home/fbot/fbot_ws/install/fbot_speech:/home/fbot/fbot_ws/install/fbot_screen:/home/fbot/fbot_ws/install/fbot_recognition:/home/fbot/fbot_ws/install/fbot_manipulator_tools:/home/fbot/fbot_ws/install/fbot_head:/home/fbot/fbot_ws/install/fbot_bringup:/home/fbot/fbot_ws/install/fbot_behavior:/home/fbot/fbot_ws/install/fbot_agent:/home/fbot/fbot_ws/install/bno055:/opt/ros/humble /usr/bin/cmake /home/fbot/fbot_ws/src/joy2twist/joy2twist -DCMAKE_INSTALL_PREFIX=/home/fbot/fbot_ws/src/joy2twist/install/joy2twist
+[0.091s] -- The C compiler identification is GNU 11.4.0
+[0.149s] -- The CXX compiler identification is GNU 11.4.0
+[0.155s] -- Detecting C compiler ABI info
+[0.212s] -- Detecting C compiler ABI info - done
+[0.218s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.218s] -- Detecting C compile features
+[0.218s] -- Detecting C compile features - done
+[0.220s] -- Detecting CXX compiler ABI info
+[0.279s] -- Detecting CXX compiler ABI info - done
+[0.283s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.284s] -- Detecting CXX compile features
+[0.284s] -- Detecting CXX compile features - done
+[0.291s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.549s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.651s] -- Found ament_index_cpp: 1.4.0 (/opt/ros/humble/share/ament_index_cpp/cmake)
+[0.654s] -- Found rclcpp: 16.0.14 (/opt/ros/humble/share/rclcpp/cmake)
+[0.705s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.712s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.722s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.737s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.755s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.807s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.812s] -- Found rmw_cyclonedds_cpp: 1.3.4 (/opt/ros/humble/share/rmw_cyclonedds_cpp/cmake)
+[0.842s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[0.855s] -- Looking for pthread.h
+[0.916s] -- Looking for pthread.h - found
+[0.916s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.972s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.972s] -- Found Threads: TRUE  
+[1.018s] -- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[1.029s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[1.043s] -- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)
+[1.052s] -- Found joy_linux: 3.3.0 (/opt/ros/humble/share/joy_linux/cmake)
+[1.056s] -- Found rclpy: 3.3.17 (/opt/ros/humble/share/rclpy/cmake)
+[1.135s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.201s] -- Configuring done
+[1.207s] -- Generating done
+[1.209s] -- Build files have been written to: /home/fbot/fbot_ws/src/joy2twist/build/joy2twist
+[1.214s] Invoked command in '/home/fbot/fbot_ws/src/joy2twist/build/joy2twist' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/fbot/fbot_ws/install/fbot_hri_bringup:/home/fbot/fbot_ws/install/interbotix_xs_modules:/home/fbot/fbot_ws/install/interbotix_perception_modules:/home/fbot/fbot_ws/install/interbotix_common_modules:/home/fbot/fbot_ws/install/fbot_world:/home/fbot/fbot_ws/install/fbot_vlm:/home/fbot/fbot_ws/install/fbot_speech:/home/fbot/fbot_ws/install/fbot_screen:/home/fbot/fbot_ws/install/fbot_recognition:/home/fbot/fbot_ws/install/fbot_manipulator_tools:/home/fbot/fbot_ws/install/fbot_head:/home/fbot/fbot_ws/install/fbot_bringup:/home/fbot/fbot_ws/install/fbot_behavior:/home/fbot/fbot_ws/install/fbot_agent:/home/fbot/fbot_ws/install/bno055:/opt/ros/humble /usr/bin/cmake /home/fbot/fbot_ws/src/joy2twist/joy2twist -DCMAKE_INSTALL_PREFIX=/home/fbot/fbot_ws/src/joy2twist/install/joy2twist
+[1.216s] Invoking command in '/home/fbot/fbot_ws/src/joy2twist/build/joy2twist': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/fbot/fbot_ws/install/fbot_hri_bringup:/home/fbot/fbot_ws/install/interbotix_xs_modules:/home/fbot/fbot_ws/install/interbotix_perception_modules:/home/fbot/fbot_ws/install/interbotix_common_modules:/home/fbot/fbot_ws/install/fbot_world:/home/fbot/fbot_ws/install/fbot_vlm:/home/fbot/fbot_ws/install/fbot_speech:/home/fbot/fbot_ws/install/fbot_screen:/home/fbot/fbot_ws/install/fbot_recognition:/home/fbot/fbot_ws/install/fbot_manipulator_tools:/home/fbot/fbot_ws/install/fbot_head:/home/fbot/fbot_ws/install/fbot_bringup:/home/fbot/fbot_ws/install/fbot_behavior:/home/fbot/fbot_ws/install/fbot_agent:/home/fbot/fbot_ws/install/bno055:/opt/ros/humble /usr/bin/cmake --build /home/fbot/fbot_ws/src/joy2twist/build/joy2twist -- -j16 -l16
+[1.258s] [ 33%] [32mBuilding CXX object CMakeFiles/joy2twist.dir/src/joy2twist_node.cpp.o[0m
+[1.258s] [ 66%] [32mBuilding CXX object CMakeFiles/joy2twist.dir/src/main.cpp.o[0m
+[1.264s] [ 66%] Built target ament_cmake_python_copy_joy2twist
+[1.422s] running egg_info
+[1.434s] creating joy2twist.egg-info
+[1.434s] writing joy2twist.egg-info/PKG-INFO
+[1.434s] writing dependency_links to joy2twist.egg-info/dependency_links.txt
+[1.434s] writing top-level names to joy2twist.egg-info/top_level.txt
+[1.434s] writing manifest file 'joy2twist.egg-info/SOURCES.txt'
+[1.470s] reading manifest file 'joy2twist.egg-info/SOURCES.txt'
+[1.470s] writing manifest file 'joy2twist.egg-info/SOURCES.txt'
+[1.493s] [ 66%] Built target ament_cmake_python_build_joy2twist_egg
+[7.786s] [100%] [32m[1mLinking CXX executable joy2twist[0m
+[8.137s] [100%] Built target joy2twist
+[8.147s] Invoked command in '/home/fbot/fbot_ws/src/joy2twist/build/joy2twist' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/fbot/fbot_ws/install/fbot_hri_bringup:/home/fbot/fbot_ws/install/interbotix_xs_modules:/home/fbot/fbot_ws/install/interbotix_perception_modules:/home/fbot/fbot_ws/install/interbotix_common_modules:/home/fbot/fbot_ws/install/fbot_world:/home/fbot/fbot_ws/install/fbot_vlm:/home/fbot/fbot_ws/install/fbot_speech:/home/fbot/fbot_ws/install/fbot_screen:/home/fbot/fbot_ws/install/fbot_recognition:/home/fbot/fbot_ws/install/fbot_manipulator_tools:/home/fbot/fbot_ws/install/fbot_head:/home/fbot/fbot_ws/install/fbot_bringup:/home/fbot/fbot_ws/install/fbot_behavior:/home/fbot/fbot_ws/install/fbot_agent:/home/fbot/fbot_ws/install/bno055:/opt/ros/humble /usr/bin/cmake --build /home/fbot/fbot_ws/src/joy2twist/build/joy2twist -- -j16 -l16
+[8.154s] Invoking command in '/home/fbot/fbot_ws/src/joy2twist/build/joy2twist': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/fbot/fbot_ws/install/fbot_hri_bringup:/home/fbot/fbot_ws/install/interbotix_xs_modules:/home/fbot/fbot_ws/install/interbotix_perception_modules:/home/fbot/fbot_ws/install/interbotix_common_modules:/home/fbot/fbot_ws/install/fbot_world:/home/fbot/fbot_ws/install/fbot_vlm:/home/fbot/fbot_ws/install/fbot_speech:/home/fbot/fbot_ws/install/fbot_screen:/home/fbot/fbot_ws/install/fbot_recognition:/home/fbot/fbot_ws/install/fbot_manipulator_tools:/home/fbot/fbot_ws/install/fbot_head:/home/fbot/fbot_ws/install/fbot_bringup:/home/fbot/fbot_ws/install/fbot_behavior:/home/fbot/fbot_ws/install/fbot_agent:/home/fbot/fbot_ws/install/bno055:/opt/ros/humble /usr/bin/cmake --install /home/fbot/fbot_ws/src/joy2twist/build/joy2twist
+[8.161s] -- Install configuration: ""
+[8.161s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/lib/joy2twist/joy2twist
+[8.163s] -- Set runtime path of "/home/fbot/fbot_ws/src/joy2twist/install/joy2twist/lib/joy2twist/joy2twist" to ""
+[8.163s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//launch
+[8.163s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//launch/__pycache__
+[8.163s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//launch/__pycache__/joy2twist.launch.cpython-310.pyc
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//launch/__pycache__/gamepad_controller.launch.cpython-310.pyc
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//launch/gamepad_controller.launch.py
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//launch/speech_head_controller.launch.py
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//launch/joy2twist.launch.py
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//config
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//config/joyinterface.yaml
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//config/joy2twist_ugv.yaml
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist//config/joy2twist.yaml
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/environment/pythonpath.sh
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/environment/pythonpath.dsv
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist-1.0.0-py3.10.egg-info
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist-1.0.0-py3.10.egg-info/top_level.txt
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist-1.0.0-py3.10.egg-info/SOURCES.txt
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist-1.0.0-py3.10.egg-info/dependency_links.txt
+[8.164s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist-1.0.0-py3.10.egg-info/PKG-INFO
+[8.165s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist
+[8.165s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist/__init__.py
+[8.190s] Listing '/home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist'...
+[8.190s] Compiling '/home/fbot/fbot_ws/src/joy2twist/install/joy2twist/local/lib/python3.10/dist-packages/joy2twist/__init__.py'...
+[8.193s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/lib/joy2twist/joy_speech.py
+[8.193s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/lib/joy2twist/joy_speech_teste.py
+[8.193s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/ament_index/resource_index/package_run_dependencies/joy2twist
+[8.193s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/ament_index/resource_index/parent_prefix_path/joy2twist
+[8.193s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/environment/ament_prefix_path.sh
+[8.193s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/environment/ament_prefix_path.dsv
+[8.193s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/environment/path.sh
+[8.193s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/environment/path.dsv
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/local_setup.bash
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/local_setup.sh
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/local_setup.zsh
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/local_setup.dsv
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/package.dsv
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/ament_index/resource_index/packages/joy2twist
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/cmake/ament_cmake_export_include_directories-extras.cmake
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/cmake/joy2twistConfig.cmake
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/cmake/joy2twistConfig-version.cmake
+[8.194s] -- Installing: /home/fbot/fbot_ws/src/joy2twist/install/joy2twist/share/joy2twist/package.xml
+[8.195s] Invoked command in '/home/fbot/fbot_ws/src/joy2twist/build/joy2twist' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/fbot/fbot_ws/install/fbot_hri_bringup:/home/fbot/fbot_ws/install/interbotix_xs_modules:/home/fbot/fbot_ws/install/interbotix_perception_modules:/home/fbot/fbot_ws/install/interbotix_common_modules:/home/fbot/fbot_ws/install/fbot_world:/home/fbot/fbot_ws/install/fbot_vlm:/home/fbot/fbot_ws/install/fbot_speech:/home/fbot/fbot_ws/install/fbot_screen:/home/fbot/fbot_ws/install/fbot_recognition:/home/fbot/fbot_ws/install/fbot_manipulator_tools:/home/fbot/fbot_ws/install/fbot_head:/home/fbot/fbot_ws/install/fbot_bringup:/home/fbot/fbot_ws/install/fbot_behavior:/home/fbot/fbot_ws/install/fbot_agent:/home/fbot/fbot_ws/install/bno055:/opt/ros/humble /usr/bin/cmake --install /home/fbot/fbot_ws/src/joy2twist/build/joy2twist
