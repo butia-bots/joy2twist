@@ -10,10 +10,10 @@ class SpeechServer(Node):
 
         self.srv = self.create_service(
             SynthesizeSpeech, 
-            'speech_msg', 
+            '/fbot_speech/ss/say_something', 
             self.synthesize_speech_callback
         )
-        self.get_logger().info("Serviço 'speech_msg' (SynthesizeSpeech) iniciado e pronto.")
+        self.get_logger().info("Serviço '/fbot_speech/ss/say_something' (SynthesizeSpeech) iniciado e pronto.")
 
     def synthesize_speech_callback(self, request, response):
         

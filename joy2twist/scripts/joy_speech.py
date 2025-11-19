@@ -6,37 +6,28 @@ from sensor_msgs.msg import Joy, JointState
 from rclpy.qos import qos_profile_sensor_data
 from fbot_speech_msgs.srv import SynthesizeSpeech
 from std_msgs.msg import Bool, Float64MultiArray
-import numpy as np
+import yaml
 
-BUTTON_Y = 3
-BUTTON_X = 0
-BUTTON_A = 1
-DPAD_VERTICAL = 5
-DPAD_HORIZONTAL = 4
 
 class JoystickSpeechNode(Node):
     def __init__(self):
         super().__init__('Joystick_Speech_node')
         self.initRosComm()
+        self.yaml_opener()
+        self.load_parameters()
 
         self.last_DPAD_vertical_state = 0
         self.last_DPAD_horizontal_state = 0
         self.current_DPAD_vertical_state = 0
         self.current_DPAD_horizontal_state = 0
 
-        self.up_limit = 190.0
-        self.down_limit = 150.0
-        self.right_limit = 240.0
-        self.left_limit = 120.0
-
-        self.velocity = 1.0
-
-        self.initial_horizontal = 180.0
-        self.initial_vertical = 180.0
-
         self.current_horizontal = self.initial_horizontal
         self.current_vertical = self.initial_vertical
         self.start_pos()
+
+    def yaml_opener(self):
+        with open("/home/fbothome/ros2_ws/src/joy2twist/joy2twist/config/joyinterface.yaml", "r") as file:
+            self.safe_build = yaml.safe_load(file)
 
 
     def initRosComm(self):
@@ -53,12 +44,12 @@ class JoystickSpeechNode(Node):
 
         
     def joy_cb(self, joy_msg):
-        
-        self.current_DPAD_vertical_state = joy_msg.axes[DPAD_VERTICAL]
-        self.current_DPAD_horizontal_state = joy_msg.axes[DPAD_HORIZONTAL]
-        self.current_BUTTON_Y_state = joy_msg.buttons[BUTTON_Y]
-        self.current_BUTTON_X_state = joy_msg.buttons[BUTTON_X]
-        self.current_BUTTON_A_state = joy_msg.buttons[BUTTON_A]
+
+        self.current_BUTTON_Y_state = joy_msg.buttons[self.BUTTON_Y]
+        self.current_BUTTON_X_state = joy_msg.buttons[self.BUTTON_X]
+        self.current_BUTTON_A_state = joy_msg.buttons[self.BUTTON_A]
+        self.current_DPAD_vertical_state = joy_msg.axes[self.DPAD_VERTICAL]
+        self.current_DPAD_horizontal_state = joy_msg.axes[self.DPAD_HORIZONTAL]
 
         if self.current_BUTTON_Y_state == 1:
             self.get_logger().info("Botão Y pressionado")
@@ -125,6 +116,24 @@ class JoystickSpeechNode(Node):
         #while response.done() is False:
         #   pass
         self.get_logger().info('Message created successfully!')
+    
+
+    def load_parameters(self):
+        self.up_limit = self.safe_build["neck_limits"]["up_limit"]
+        self.down_limit = self.safe_build["neck_limits"]["down_limit"]
+        self.right_limit = self.safe_build["neck_limits"]["right_limit"]
+        self.left_limit = self.safe_build["neck_limits"]["left_limit"]
+
+        self.velocity = self.safe_build["neck_velocity_factor"]["velocity"]
+
+        self.initial_horizontal = self.safe_build["neck_initial_position"]["initial_horizontal"]
+        self.initial_vertical = self.safe_build["neck_initial_position"]["initial_vertical"]
+
+        self.BUTTON_Y = self.safe_build["button_index_map"]["button"]["enable_speech"]
+        self.BUTTON_X = self.safe_build["button_index_map"]["button"]["enable_neck_movement"]
+        self.BUTTON_A = self.safe_build["button_index_map"]["button"]["centralize_neck"]
+        self.DPAD_VERTICAL = self.safe_build["button_index_map"]["axis"]["vertical_movement"]
+        self.DPAD_HORIZONTAL = self.safe_build["button_index_map"]["axis"]["horizontal_movement"]
 
 
 def main(args=None):
