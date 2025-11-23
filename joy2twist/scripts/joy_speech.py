@@ -2,19 +2,20 @@
 
 import rclpy
 from rclpy.node import Node
-from sensor_msgs.msg import Joy, JointState
+from sensor_msgs.msg import Joy
 from rclpy.qos import qos_profile_sensor_data
 from fbot_speech_msgs.srv import SynthesizeSpeech
-from std_msgs.msg import Bool, Float64MultiArray
+from std_msgs.msg import Float64MultiArray
 import yaml
 
 
 class JoystickSpeechNode(Node):
     def __init__(self):
         super().__init__('Joystick_Speech_node')
-        self.initRosComm()
+
         self.yaml_opener()
         self.load_parameters()
+        self.initRosComm()
 
         self.last_DPAD_vertical_state = 0
         self.last_DPAD_horizontal_state = 0
@@ -23,6 +24,7 @@ class JoystickSpeechNode(Node):
 
         self.current_horizontal = self.initial_horizontal
         self.current_vertical = self.initial_vertical
+
         self.start_pos()
 
     def yaml_opener(self):
@@ -42,7 +44,7 @@ class JoystickSpeechNode(Node):
         neck.data = [horizontal, vertical]
         self.neck_pub_.publish(neck)
 
-        
+
     def joy_cb(self, joy_msg):
 
         self.current_BUTTON_Y_state = joy_msg.buttons[self.BUTTON_Y]
@@ -52,31 +54,31 @@ class JoystickSpeechNode(Node):
         self.current_DPAD_horizontal_state = joy_msg.axes[self.DPAD_HORIZONTAL]
 
         if self.current_BUTTON_Y_state == 1:
-            
+
             if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
                 self.get_logger().info("Botão para cima pressionado")
                 self.create_message('Hello my name is Boris', 'en')
-            
+
             elif self.current_DPAD_vertical_state == -1 and self.last_DPAD_vertical_state == 0:
                 self.get_logger().info("Botão para baixo pressionado")
                 self.create_message('The FBOT is the Robotics Group at FURG (Federal University of Rio Grande) focused on developing projects in autonomous mobile robotics. ' \
                                 'Their main objective is to prepare students for national and international competitions, applying knowledge in electronics, programming, and artificial intelligence.', 'en')
-            
+
             elif self.current_DPAD_horizontal_state == 1 and self.last_DPAD_horizontal_state == 0:
                 self.get_logger().info("Botão para direita pressionado")
                 self.create_message('I come from FURG, the Federal University of Rio Grande, a public higher education institution recognized for its excellence in teaching, research, and outreach (extension).', 'en')
-            
+
             elif self.current_DPAD_horizontal_state == -1 and self.last_DPAD_horizontal_state == 0:
                 self.get_logger().info("Botão para esquerda pressionado")
                 self.create_message('Currently, I am a four-time brazilian robotics competition champion. ', 'en')
 
 
         elif self.current_BUTTON_X_state == 1:
-           
+
             if self.current_DPAD_vertical_state == 1 and self.current_vertical < self.up_limit:
                 self.get_logger().info("Botão para cima pressionado")
                 self.neck_movement(0.0, self.velocity)
-                
+
             elif self.current_DPAD_vertical_state == -1 and self.current_vertical > self.down_limit:
                 self.get_logger().info("Botão para baixo pressionado")
                 self.neck_movement(0.0, -self.velocity)
@@ -88,12 +90,12 @@ class JoystickSpeechNode(Node):
             elif self.current_DPAD_horizontal_state == -1 and self.current_horizontal > self.left_limit:
                 self.get_logger().info("Botão para esquerda pressionado")
                 self.neck_movement(-self.velocity, 0.0)
-            
+
             elif self.current_BUTTON_A_state == 1:
                 self.start_pos()
 
         self.last_DPAD_horizontal_state = self.current_DPAD_horizontal_state
-        self.last_DPAD_vertical_state = self.current_horizontal_state = self.current_DPAD_vertical_state
+        self.last_DPAD_vertical_state = self.current_DPAD_vertical_state
 
 
     def neck_movement(self, horizontal_angle, vertical_angle):
@@ -103,7 +105,7 @@ class JoystickSpeechNode(Node):
         neck = Float64MultiArray()
         neck.data = [self.current_horizontal, self.current_vertical]
         self.neck_pub_.publish(neck)
-        
+
 
     def create_message(self, text, lang):
         self.get_logger().info('Creating message: "%s" in %s' % (text, lang))
@@ -117,7 +119,7 @@ class JoystickSpeechNode(Node):
         #while response.done() is False:
         #   pass
         self.get_logger().info('Message created successfully!')
-    
+
 
     def load_parameters(self):
         self.up_limit = self.safe_build["neck_limits"]["up_limit"]
@@ -146,4 +148,3 @@ def main(args=None):
 
 if __name__ == "__main__":
     main()
-
