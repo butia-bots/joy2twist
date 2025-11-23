@@ -57,20 +57,19 @@ class JoystickSpeechNode(Node):
 
             if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
                 self.get_logger().info("Botão para cima pressionado")
-                self.create_message('Hello my name is Boris', 'en')
+                self.create_message(self.up_message_text, self.up_message_lang)
 
             elif self.current_DPAD_vertical_state == -1 and self.last_DPAD_vertical_state == 0:
                 self.get_logger().info("Botão para baixo pressionado")
-                self.create_message('The FBOT is the Robotics Group at FURG (Federal University of Rio Grande) focused on developing projects in autonomous mobile robotics. ' \
-                                'Their main objective is to prepare students for national and international competitions, applying knowledge in electronics, programming, and artificial intelligence.', 'en')
+                self.create_message(self.down_message_text, self.down_message_lang)
 
             elif self.current_DPAD_horizontal_state == 1 and self.last_DPAD_horizontal_state == 0:
                 self.get_logger().info("Botão para direita pressionado")
-                self.create_message('I come from FURG, the Federal University of Rio Grande, a public higher education institution recognized for its excellence in teaching, research, and outreach (extension).', 'en')
+                self.create_message(self.left_message_text, self.left_message_lang)
 
             elif self.current_DPAD_horizontal_state == -1 and self.last_DPAD_horizontal_state == 0:
                 self.get_logger().info("Botão para esquerda pressionado")
-                self.create_message('Currently, I am a four-time brazilian robotics competition champion. ', 'en')
+                self.create_message(self.right_message_text, self.right_message_lang)
 
 
         elif self.current_BUTTON_X_state == 1:
@@ -137,6 +136,15 @@ class JoystickSpeechNode(Node):
         self.BUTTON_A = self.safe_build["button_index_map"]["button"]["centralize_neck"]
         self.DPAD_VERTICAL = self.safe_build["button_index_map"]["axis"]["vertical_movement"]
         self.DPAD_HORIZONTAL = self.safe_build["button_index_map"]["axis"]["horizontal_movement"]
+
+        self.up_message_text = self.safe_build["bot_message"]["up"]["text"]
+        self.up_message_lang = self.safe_build["bot_message"]["up"]["lang"]
+        self.down_message_text = self.safe_build["bot_message"]["down"]["text"]
+        self.down_message_lang = self.safe_build["bot_message"]["down"]["lang"]
+        self.left_message_text = self.safe_build["bot_message"]["left"]["text"]
+        self.left_message_lang = self.safe_build["bot_message"]["left"]["lang"]
+        self.right_message_text = self.safe_build["bot_message"]["right"]["text"]
+        self.right_message_lang = self.safe_build["bot_message"]["right"]["lang"]
 
 
 def main(args=None):

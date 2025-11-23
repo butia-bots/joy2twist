@@ -1,16 +1,16 @@
-
 neck_limits:
   up_limit: 190.0
   down_limit: 150.0
   right_limit: 240.0
   left_limit: 120.0
-    
+
 neck_velocity_factor:
   velocity: 1.0
 
 neck_initial_position:
   initial_horizontal: 180.0
-  initial_vertical: 180.0
+  initial_vertical:
+    180.0
 
     # The following map is suited for Logitech F710
 button_index_map:
@@ -21,3 +21,19 @@ button_index_map:
   axis:
     vertical_movement: 5 # DPad vertical
     horizontal_movement: 4 # DPad horizontal
+
+bot_message:
+  up:
+    text: "Hello my name is Boris."
+    lang: "en"
+  down:
+    text:
+      "The FBOT is the Robotics Group at FURG (Federal University of Rio Grande) focused on developing projects in autonomous mobile robotics. ' \
+      'Their main objective is to prepare students for national and international competitions, applying knowledge in electronics, programming, and artificial intelligence."
+    lang: "en"
+  left:
+    text: "I come from FURG, the Federal University of Rio Grande, a public higher education institution recognized for its excellence in teaching, research, and outreach."
+    lang: "en"
+  right:
+    text: "Currently, I am a four-time brazilian robotics competition champion."
+    lang: "en"
