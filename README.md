@@ -30,6 +30,25 @@ If neither `RB` nor `RT` is pressed, the robot operates in *regular* driving mod
 To drive robot use sticks.
 By default, linear `X` and `Y` are held by the left stick. Angular `Z` is controlled with the right stick.
 
+While holding `X`:
+
+|    Button     |      Function      |
+| :-----------: | :----------------: |
+|   `DPad Up`   |   Neck points up   |
+|  `DPad Down`  |  Neck points down  |
+|  `DPad Right` |  Neck points right |
+|  `DPad Left`  |  Neck points left  |
+|      `A`      |   Centralize neck  |
+
+While holding `Y`:
+
+|    Button     |       Function       |
+| :-----------: | :------------------: |
+|   `DPad Up`   |    Line 1 (Hello)    |
+|  `DPad Down`  |  Line 2 (FBOT desc.) |
+|  `DPad Right` |  Line 3 (CBR stats)  |
+|  `DPad Left`  |  Line 4 (FURG desc.) |
+
 ### Emergency stop
 
 | Button |      Function       |
