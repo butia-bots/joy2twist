@@ -38,10 +38,10 @@ class JoystickSpeechNode(Node):
         self.neck_pub_ = self.create_publisher(Float64MultiArray, "/updateNeck", 1)
 
     def start_pos(self):
-        horizontal = self.initial_horizontal
-        vertical = self.initial_vertical
+        self.current_horizontal = self.initial_horizontal
+        self.current_vertical = self.initial_vertical
         neck = Float64MultiArray()
-        neck.data = [horizontal, vertical]
+        neck.data = [self.initial_horizontal, self.initial_vertical]
         self.neck_pub_.publish(neck)
 
 
@@ -52,6 +52,7 @@ class JoystickSpeechNode(Node):
         self.current_BUTTON_A_state = joy_msg.buttons[self.BUTTON_A]
         self.current_DPAD_vertical_state = joy_msg.axes[self.DPAD_VERTICAL]
         self.current_DPAD_horizontal_state = joy_msg.axes[self.DPAD_HORIZONTAL]
+
 
         if self.current_BUTTON_Y_state == 1:
 
@@ -98,7 +99,6 @@ class JoystickSpeechNode(Node):
 
 
     def neck_movement(self, horizontal_angle, vertical_angle):
-        self.get_logger().info("Neck_movement ativado")
         self.current_horizontal += horizontal_angle
         self.current_vertical += vertical_angle
         neck = Float64MultiArray()

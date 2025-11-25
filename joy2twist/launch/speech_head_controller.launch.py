@@ -13,6 +13,11 @@ def generate_launch_description():
         default_value=EnvironmentVariable("ROBOT_NAMESPACE", default_value=""),
         description="Add namespace to all launched nodes.",
     )
+    config_remote_arg = DeclareLaunchArgument(
+        'use_remote',
+        default_value='false',
+        description="If should run the node on remote"
+    )
 
     joy_speech = Node(
         package="joy2twist",
@@ -32,7 +37,7 @@ def generate_launch_description():
 
     neck = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(get_package_share_directory("fbot_hri_bringup"), 'neck.launch.py')
+            os.path.join(get_package_share_directory("fbot_head"), 'launch', 'neck.launch.py')
         ),
     )
 
@@ -48,6 +53,7 @@ def generate_launch_description():
 
     actions = [
         declare_namespace_arg,
+        config_remote_arg,
         joy_speech,
         joy,
         neck,
