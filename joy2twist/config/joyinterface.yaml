@@ -19,8 +19,8 @@ button_index_map:
     enable_neck_movement: 0 # Button X
     centralize_neck: 1 # Button A
   axis:
-    vertical_movement: 1 # DPad vertical
-    horizontal_movement: 0 # DPad horizontal
+    vertical_movement: 5 # DPad vertical
+    horizontal_movement: 4 # DPad horizontal
 
 bot_message:
   up:

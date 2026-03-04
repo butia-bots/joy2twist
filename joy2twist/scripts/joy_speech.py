@@ -13,6 +13,8 @@ class JoystickSpeechNode(Node):
     def __init__(self):
         super().__init__('Joystick_Speech_node')
 
+        self.enable_logs = False
+
         self.yaml_opener()
         self.load_parameters()
         self.initRosComm()
@@ -55,40 +57,41 @@ class JoystickSpeechNode(Node):
 
 
         if self.current_BUTTON_Y_state == 1:
+            if self.enable_logs: self.get_logger().info(f"BUTTON Y pressionado - Modo Fala Ativado. {self.current_DPAD_vertical_state}")
 
             if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
-                self.get_logger().info("Botão para cima pressionado")
+                if self.enable_logs: self.get_logger().info("SPEECH - Botão para cima pressionado")
                 self.create_message(self.up_message_text, self.up_message_lang)
 
             elif self.current_DPAD_vertical_state == -1 and self.last_DPAD_vertical_state == 0:
-                self.get_logger().info("Botão para baixo pressionado")
+                if self.enable_logs: self.get_logger().info("SPEECH - Botão para baixo pressionado")
                 self.create_message(self.down_message_text, self.down_message_lang)
 
             elif self.current_DPAD_horizontal_state == 1 and self.last_DPAD_horizontal_state == 0:
-                self.get_logger().info("Botão para direita pressionado")
+                if self.enable_logs: self.get_logger().info("SPEECH - Botão para direita pressionado")
                 self.create_message(self.left_message_text, self.left_message_lang)
 
             elif self.current_DPAD_horizontal_state == -1 and self.last_DPAD_horizontal_state == 0:
-                self.get_logger().info("Botão para esquerda pressionado")
+                if self.enable_logs: self.get_logger().info("SPEECH - Botão para esquerda pressionado")
                 self.create_message(self.right_message_text, self.right_message_lang)
 
 
         elif self.current_BUTTON_X_state == 1:
 
             if self.current_DPAD_vertical_state == 1 and self.current_vertical < self.up_limit:
-                self.get_logger().info("Botão para cima pressionado")
+                if self.enable_logs: self.get_logger().info("NECK - Botão para cima pressionado")
                 self.neck_movement(0.0, self.velocity)
 
             elif self.current_DPAD_vertical_state == -1 and self.current_vertical > self.down_limit:
-                self.get_logger().info("Botão para baixo pressionado")
+                if self.enable_logs: self.get_logger().info("NECK - Botão para baixo pressionado")
                 self.neck_movement(0.0, -self.velocity)
 
             elif self.current_DPAD_horizontal_state == 1 and self.current_horizontal < self.right_limit:
-                self.get_logger().info("Botão para direita pressionado")
+                if self.enable_logs: self.get_logger().info("NECK - Botão para esquerda pressionado")
                 self.neck_movement(self.velocity, 0.0)
 
             elif self.current_DPAD_horizontal_state == -1 and self.current_horizontal > self.left_limit:
-                self.get_logger().info("Botão para esquerda pressionado")
+                if self.enable_logs: self.get_logger().info("NECK - Botão para direita pressionado")
                 self.neck_movement(-self.velocity, 0.0)
 
             elif self.current_BUTTON_A_state == 1:
