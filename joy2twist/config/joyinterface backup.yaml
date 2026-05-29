@@ -38,11 +38,11 @@ bot_message:
     # text:
     #   "The FBOT is the Robotics Group at FURG (Federal University of Rio Grande) focused on developing projects in autonomous mobile robotics. ' \
     #   'Their main objective is to prepare students for national and international competitions, applying knowledge in electronics, programming, and artificial intelligence."
-    text: "Tchau meu amigo"
+    text: "tcao my friend"
     lang: "en"
   left:
-    text: "Eu sou da FURG, a Universidade Federal do Rio Grande, uma instituição pública de ensino superior, reconhecida por sua excelência no ensino, na pesquisa e em extensão"
+    text: "I come from FURG, the Federal University of Rio Grande, a public higher education institution recognized for its excellence in teaching, research, and outreach."
     lang: "en"
   right:
-    text: "Atualmente, sou tetracampeão consecutivo da Competição Brasileira de Robótica, categoria doméstica"
+    text: "Currently, I am a four-time brazilian robotics competition champion."
     lang: "en"

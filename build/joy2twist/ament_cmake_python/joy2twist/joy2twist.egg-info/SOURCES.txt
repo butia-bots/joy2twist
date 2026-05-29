@@ -1,6 +1,0 @@
-setup.py
-joy2twist/__init__.py
-joy2twist.egg-info/PKG-INFO
-joy2twist.egg-info/SOURCES.txt
-joy2twist.egg-info/dependency_links.txt
-joy2twist.egg-info/top_level.txt

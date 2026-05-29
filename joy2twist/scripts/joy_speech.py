@@ -5,7 +5,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import Joy
 from rclpy.qos import qos_profile_sensor_data
 from fbot_speech_msgs.srv import SynthesizeSpeech
-from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Float64MultiArray, String
 import yaml
 
 
@@ -38,6 +38,7 @@ class JoystickSpeechNode(Node):
         self.joy_sub_ = self.create_subscription(Joy, 'joy', self.joy_cb, qos_profile_sensor_data)
         self.cli = self.create_client(SynthesizeSpeech, "/fbot_speech/ss/say_something")
         self.neck_pub_ = self.create_publisher(Float64MultiArray, "/updateNeck", 1)
+        self.emotion_pub = self.create_publisher(String, "/fbot_face/emotion", 1)
 
     def start_pos(self):
         self.current_horizontal = self.initial_horizontal
@@ -52,6 +53,7 @@ class JoystickSpeechNode(Node):
         self.current_BUTTON_Y_state = joy_msg.buttons[self.BUTTON_Y]
         self.current_BUTTON_X_state = joy_msg.buttons[self.BUTTON_X]
         self.current_BUTTON_A_state = joy_msg.buttons[self.BUTTON_A]
+        self.current_BUTTON_B_state = joy_msg.buttons[self.BUTTON_B]
         self.current_DPAD_vertical_state = joy_msg.axes[self.DPAD_VERTICAL]
         self.current_DPAD_horizontal_state = joy_msg.axes[self.DPAD_HORIZONTAL]
 
@@ -96,10 +98,34 @@ class JoystickSpeechNode(Node):
 
             elif self.current_BUTTON_A_state == 1:
                 self.start_pos()
+                self.set_emotion("reset")
+        
+
+        elif self.current_BUTTON_B_state == 1:
+
+            if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
+                self.set_emotion('up')
+
+            elif self.current_DPAD_vertical_state == -1 and self.last_DPAD_vertical_state == 0:
+                self.set_emotion('down')
+
+            elif self.current_DPAD_horizontal_state == 1 and self.last_DPAD_horizontal_state == 0:
+                self.set_emotion('right')
+
+            elif self.current_DPAD_horizontal_state == -1 and self.last_DPAD_horizontal_state == 0:
+                self.set_emotion('left')
+
+                
+
+        
 
         self.last_DPAD_horizontal_state = self.current_DPAD_horizontal_state
         self.last_DPAD_vertical_state = self.current_DPAD_vertical_state
 
+    def set_emotion(self, arrow):
+        msg = String(data=self.emotions[arrow])
+        self.emotion_pub.publish(msg)
+        if self.enable_logs: self.get_logger().info(f"EMOTIONS - Button {arrow} with emotion {self.emotions[arrow]}")
 
     def neck_movement(self, horizontal_angle, vertical_angle):
         self.current_horizontal += horizontal_angle
@@ -137,6 +163,7 @@ class JoystickSpeechNode(Node):
         self.BUTTON_Y = self.safe_build["button_index_map"]["button"]["enable_speech"]
         self.BUTTON_X = self.safe_build["button_index_map"]["button"]["enable_neck_movement"]
         self.BUTTON_A = self.safe_build["button_index_map"]["button"]["centralize_neck"]
+        self.BUTTON_B = self.safe_build["button_index_map"]["button"]["enable_emotion"]
         self.DPAD_VERTICAL = self.safe_build["button_index_map"]["axis"]["vertical_movement"]
         self.DPAD_HORIZONTAL = self.safe_build["button_index_map"]["axis"]["horizontal_movement"]
 
@@ -149,6 +176,7 @@ class JoystickSpeechNode(Node):
         self.right_message_text = self.safe_build["bot_message"]["right"]["text"]
         self.right_message_lang = self.safe_build["bot_message"]["right"]["lang"]
 
+        self.emotions = self.safe_build["emotions"]
 
 def main(args=None):
     rclpy.init(args=args)

@@ -1,12 +1,12 @@
 /**:
   ros__parameters:
     linear_velocity_factor:
-      fast: 1.0
+      fast: 1.7
       regular: 0.3
       slow: 0.2
 
     angular_velocity_factor:
-      fast: 1.0
+      fast: 1.7
       regular: 0.3
       slow: 0.2
 
