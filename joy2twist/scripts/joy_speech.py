@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import rclpy
+from playsound import playsound
 from rclpy.node import Node
 from sensor_msgs.msg import Joy
 from rclpy.qos import qos_profile_sensor_data
@@ -63,19 +64,23 @@ class JoystickSpeechNode(Node):
 
             if self.current_DPAD_vertical_state == 1 and self.last_DPAD_vertical_state == 0:
                 if self.enable_logs: self.get_logger().info("SPEECH - Botão para cima pressionado")
-                self.create_message(self.up_message_text, self.up_message_lang)
+                playsound ("/home/fbot/fbot_ws/src/joy2twist/joy2twist/sounds/oi.mp3")
+                # self.create_message(self.up_message_text, self.up_message_lang)
 
             elif self.current_DPAD_vertical_state == -1 and self.last_DPAD_vertical_state == 0:
                 if self.enable_logs: self.get_logger().info("SPEECH - Botão para baixo pressionado")
-                self.create_message(self.down_message_text, self.down_message_lang)
+                playsound ("/home/fbot/fbot_ws/src/joy2twist/joy2twist/sounds/tchau.mp3")
+                # self.create_message(self.down_message_text, self.down_message_lang)
 
             elif self.current_DPAD_horizontal_state == 1 and self.last_DPAD_horizontal_state == 0:
                 if self.enable_logs: self.get_logger().info("SPEECH - Botão para direita pressionado")
-                self.create_message(self.left_message_text, self.left_message_lang)
+                playsound ("/home/fbot/fbot_ws/src/joy2twist/joy2twist/sounds/atualmente.mp3")
+                # self.create_message(self.left_message_text, self.left_message_lang)
 
             elif self.current_DPAD_horizontal_state == -1 and self.last_DPAD_horizontal_state == 0:
                 if self.enable_logs: self.get_logger().info("SPEECH - Botão para esquerda pressionado")
-                self.create_message(self.right_message_text, self.right_message_lang)
+                playsound ("/home/fbot/fbot_ws/src/joy2twist/joy2twist/sounds/furg.mp3")
+                # self.create_message(self.right_message_text, self.right_message_lang)
 
 
         elif self.current_BUTTON_X_state == 1:
