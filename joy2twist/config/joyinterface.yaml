@@ -5,7 +5,7 @@ neck_limits:
   left_limit: 120.0
 
 neck_velocity_factor:
-  velocity: 2.0
+  velocity: 1.0
 
 neck_initial_position:
   initial_horizontal: 180.0
@@ -33,12 +33,13 @@ emotions:
 bot_message:
   up:
     text: "oi eu sou o boris"
-    lang: "en"
+    lang: "pt"
   down:
     # text:
     #   "The FBOT is the Robotics Group at FURG (Federal University of Rio Grande) focused on developing projects in autonomous mobile robotics. ' \
     #   'Their main objective is to prepare students for national and international competitions, applying knowledge in electronics, programming, and artificial intelligence."
-    text: "Tchau meu amigo"
+    #text: "Tchau meu amigo"
+    text: 'Six seven........ four two'
     lang: "en"
   left:
     text: "Eu sou da FURG, a Universidade Federal do Rio Grande, uma instituição pública de ensino superior, reconhecida por sua excelência no ensino, na pesquisa e em extensão"
